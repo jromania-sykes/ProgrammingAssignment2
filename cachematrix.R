@@ -11,18 +11,19 @@ makeCacheMatrix <- function(x = matrix()) {
         list(set = set, get = get,
              setinverse = setinverse,
              getinverse = getinverse)
-
 }
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         i <- x$getinverse()
-        if(!is.null(i) and identical(x$get(),i$get())) {
+        if(!is.null(i) && identical(x$get(),i$get())) {
 	        message("getting inverse matrix")
 	        return(i)
         }
-        data <- i$get()
-        m <- solve(data, ...)
+        data <- x$get()
+        i <- solve(data, ...)
         x$setinverse(i)
         i
 }
+
+B = matrix(c(2, 4, 3, 1, 5, 7,9,3,3), nrow=3,ncol=3) 
